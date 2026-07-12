@@ -32,6 +32,7 @@
 <header>
   <h1>🧩 Cloud-Native Microservices Architecture — Live Demo</h1>
   <p>Reference implementation accompanying the IEEE paper. Auth, Product, and Order services running independently behind an API Gateway.</p>
+  <p style="color:#F5C451; font-size:0.8rem; margin-top:10px;">⏳ Hosted on a free-tier server that sleeps after inactivity — the <strong>first</strong> click below may take 30–60 seconds to respond while it wakes up. Every click after that is fast.</p>
 </header>
 
 <div class="wrap">
@@ -84,6 +85,7 @@ function setStatus(id, text, ok) {
 }
 
 async function login() {
+  setStatus('loginStatus', 'Contacting server… (may take up to 60s on first request)', true);
   try {
     const res = await fetch(API + '/api/auth/login', {
       method: 'POST', headers: {'Content-Type':'application/json'},
@@ -131,6 +133,7 @@ async function loadProducts() {
 }
 
 async function placeOrder() {
+  setStatus('orderStatus', 'Contacting server… (may take up to 60s on first request)', true);
   try {
     const productId = document.getElementById('productSelect').value;
     const qty = parseInt(document.getElementById('qty').value, 10);
