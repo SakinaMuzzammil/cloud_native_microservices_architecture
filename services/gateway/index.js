@@ -42,6 +42,7 @@ async function proxy(req, res, targetBase) {
     const data = await resp.json().catch(() => ({}));
     res.status(resp.status).json(data);
   } catch (e) {
+    console.error("Gateway proxy error:", e);
     res.status(502).json({ error: 'bad_gateway', message: e.message });
   }
 }
