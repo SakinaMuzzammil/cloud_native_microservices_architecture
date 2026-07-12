@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: services/auth/Dockerfile
+    environment:
+      - PORT=4001
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+    ports:
+      - "4001:4001"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4001/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  product-service:
+    build:
+      context: .
+      dockerfile: services/product/Dockerfile
+    environment:
+      - PORT=4002
+    deploy:
+      replicas: 3
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4002/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  order-service:
+    build:
+      context: .
+      dockerfile: services/order/Dockerfile
+    environment:
+      - PORT=4003
+      - PRODUCT_SERVICE_URL=http://product-service:4002
+    ports:
+      - "4003:4003"
+    depends_on:
+      - product-service
+
+  gateway:
+    build:
+      context: .
+      dockerfile: services/gateway/Dockerfile
+    environment:
+      - PORT=4000
+      - AUTH_URL=http://auth-service:4001
+      - ORDER_URL=http://order-service:4003
+      - PRODUCT_URLS=http://product-service:4002
+    ports:
+      - "4000:4000"
+    depends_on:
+      - auth-service
+      - product-service
+      - order-service
+
+networks:
+  default:
+    name: microservices-net

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: cloud-native-microservices-demo
+    runtime: docker
+    dockerfilePath: ./Dockerfile.demo
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true

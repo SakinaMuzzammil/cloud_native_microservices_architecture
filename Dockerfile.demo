@@ -1,0 +1,13 @@
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev --no-audit --no-fund || npm install --omit=dev --no-audit --no-fund
+COPY services ./services
+COPY monolith ./monolith
+COPY public ./public
+COPY demo ./demo
+ENV NODE_ENV=production
+# Render/Railway/Fly inject PORT at runtime; default kept for local docker run
+ENV PORT=8080
+EXPOSE 8080
+CMD ["node", "demo/server.js"]

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cloud-Native Microservices Demo</title>
+<style>
+  :root { --brand:#3B5BDB; --bg:#0F1222; --card:#171B33; --text:#E8EAF6; --muted:#9CA3C7; --good:#2FB380; --bad:#E5484D; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+  header { padding: 28px 24px 8px; text-align:center; }
+  header h1 { margin:0 0 4px; font-size: 1.6rem; }
+  header p { margin:0; color: var(--muted); font-size:0.9rem; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px; display:grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width:800px){ .wrap{ grid-template-columns: 1fr; } }
+  .card { background: var(--card); border-radius: 14px; padding: 20px; box-shadow: 0 4px 18px rgba(0,0,0,0.3); }
+  .card h2 { margin-top:0; font-size: 1.05rem; color: var(--brand); }
+  label { display:block; font-size: 0.8rem; color: var(--muted); margin-top: 10px; }
+  input, select { width:100%; padding: 9px 10px; margin-top: 4px; border-radius: 8px; border: 1px solid #2B2F4F; background:#10132A; color: var(--text); }
+  button { margin-top: 14px; width:100%; padding: 10px; border:none; border-radius: 8px; background: var(--brand); color:white; font-weight:600; cursor:pointer; }
+  button:hover { filter: brightness(1.1); }
+  .status { margin-top: 10px; font-size: 0.85rem; white-space:pre-wrap; word-break:break-word; }
+  .status.ok { color: var(--good); }
+  .status.err { color: var(--bad); }
+  .product { display:flex; justify-content:space-between; padding:8px 0; border-bottom: 1px solid #262A48; font-size:0.9rem;}
+  .badge { display:inline-block; padding:2px 8px; border-radius:20px; background:#1E2444; color:var(--muted); font-size:0.7rem; margin-left:6px; }
+  footer { text-align:center; padding: 20px; color: var(--muted); font-size: 0.75rem; }
+  a { color: var(--brand); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🧩 Cloud-Native Microservices Architecture — Live Demo</h1>
+  <p>Reference implementation accompanying the IEEE paper. Auth, Product, and Order services running independently behind an API Gateway.</p>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <h2>1. Login (Auth Service)</h2>
+    <label>Username</label>
+    <input id="username" value="alice" />
+    <label>Password</label>
+    <input id="password" type="password" value="password123" />
+    <button onclick="login()">Login</button>
+    <div id="loginStatus" class="status"></div>
+  </div>
+
+  <div class="card">
+    <h2>2. Product Catalog (Product Service)</h2>
+    <button onclick="loadProducts()">Refresh products</button>
+    <div id="products"></div>
+  </div>
+
+  <div class="card">
+    <h2>3. Place an Order (Order → Product inter-service call)</h2>
+    <label>Product</label>
+    <select id="productSelect"></select>
+    <label>Quantity</label>
+    <input id="qty" type="number" value="1" min="1" />
+    <button onclick="placeOrder()">Place order</button>
+    <div id="orderStatus" class="status"></div>
+  </div>
+
+  <div class="card">
+    <h2>4. System health</h2>
+    <button onclick="checkHealth()">Ping gateway</button>
+    <div id="healthStatus" class="status"></div>
+  </div>
+</div>
+
+<footer>
+  Source code, benchmarks, Kubernetes/Terraform deployment configs, and the full paper are in the
+  <a href="https://github.com/" id="repoLink" target="_blank">GitHub repository</a>.
+</footer>
+
+<script>
+const API = ''; // same-origin gateway; change to a full URL if hosting frontend separately
+let token = null;
+
+function setStatus(id, text, ok) {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = 'status ' + (ok ? 'ok' : 'err');
+}
+
+async function login() {
+  try {
+    const res = await fetch(API + '/api/auth/login', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+      })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(JSON.stringify(data));
+    token = data.token;
+    setStatus('loginStatus', 'Logged in. JWT issued (expires in ' + data.expiresIn + 's).', true);
+  } catch (e) {
+    setStatus('loginStatus', 'Login failed: ' + e.message, false);
+  }
+}
+
+async function loadProducts() {
+  try {
+    const res = await fetch(API + '/api/products');
+    const data = await res.json();
+    const list = document.getElementById('products');
+    const select = document.getElementById('productSelect');
+    list.innerHTML = '';
+    select.innerHTML = '';
+    (data.products || []).forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'product';
+      row.innerHTML = `<span>${p.name}</span><span>$${p.price.toFixed(2)} <span class="badge">stock: ${p.stock}</span></span>`;
+      list.appendChild(row);
+      const opt = document.createElement('option');
+      opt.value = p.id; opt.textContent = `${p.name} ($${p.price.toFixed(2)})`;
+      select.appendChild(opt);
+    });
+    if (data.instance) {
+      const tag = document.createElement('div');
+      tag.className = 'badge';
+      tag.style.marginTop = '8px';
+      tag.textContent = 'served by product-service instance: ' + data.instance;
+      list.appendChild(tag);
+    }
+  } catch (e) {
+    document.getElementById('products').textContent = 'Could not load products: ' + e.message;
+  }
+}
+
+async function placeOrder() {
+  try {
+    const productId = document.getElementById('productSelect').value;
+    const qty = parseInt(document.getElementById('qty').value, 10);
+    const res = await fetch(API + '/api/orders', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ productId, qty, userId: document.getElementById('username').value })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(JSON.stringify(data));
+    setStatus('orderStatus', 'Order confirmed: ' + JSON.stringify(data.order, null, 2), true);
+    loadProducts();
+  } catch (e) {
+    setStatus('orderStatus', 'Order failed: ' + e.message, false);
+  }
+}
+
+async function checkHealth() {
+  try {
+    const res = await fetch(API + '/health');
+    const data = await res.json();
+    setStatus('healthStatus', JSON.stringify(data, null, 2), true);
+  } catch (e) {
+    setStatus('healthStatus', 'Gateway unreachable: ' + e.message, false);
+  }
+}
+
+loadProducts();
+checkHealth();
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "cloud-native-microservices-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reference implementation for IEEE paper: Cloud-Native Microservices Architecture for Scalable Web Applications",
+  "license": "MIT",
+  "scripts": {
+    "start": "node demo/server.js",
+    "benchmarks": "bash benchmarks/run_benchmarks.sh",
+    "charts": "python3 benchmarks/make_charts.py"
+  },
+  "dependencies": {
+    "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "http-proxy-middleware": "^4.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.11.0",
+    "uuid": "^14.0.1"
+  },
+  "devDependencies": {
+    "autocannon": "^8.0.0"
+  }
+}
