@@ -1,10 +1,53 @@
 services:
   - type: web
-    name: cloud-native-microservices-demo
+    name: cloud-native-gateway
     runtime: docker
-    dockerfilePath: ./Dockerfile.demo
+    dockerfilePath: ./services/gateway/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: AUTH_URL
+        fromService:
+          type: web
+          name: cloud-native-auth
+          property: host
+      - key: ORDER_URL
+        fromService:
+          type: web
+          name: cloud-native-order
+          property: host
+      - key: PRODUCT_URLS
+        fromService:
+          type: web
+          name: cloud-native-product
+          property: host
+      - key: JWT_SECRET
+        generateValue: true
+
+  - type: web
+    name: cloud-native-auth
+    runtime: docker
+    dockerfilePath: ./services/auth/Dockerfile
+    dockerContext: .
     plan: free
     healthCheckPath: /health
     envVars:
       - key: JWT_SECRET
-        generateValue: true
+        sync: false
+
+  - type: web
+    name: cloud-native-product
+    runtime: docker
+    dockerfilePath: ./services/product/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+
+  - type: web
+    name: cloud-native-order
+    runtime: docker
+    dockerfilePath: ./services/order/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
