@@ -2,7 +2,7 @@
 
 Reference implementation and empirical performance evaluation accompanying the IEEE-format research paper of the same name.
 
-**Live demo:** _add your Render URL here after deploying (see [Deploying the live demo](#deploying-the-live-demo))_
+**Live demo:** _https://cloud-native-microservices-demo-0ur2.onrender.com_
 **Paper (PDF):** [`IEEE_Paper_Cloud_Native_Microservices.pdf`](./IEEE_Paper_Cloud_Native_Microservices.pdf)
 
 ![Architecture diagram](./charts/fig0_architecture.png)
@@ -96,6 +96,10 @@ git push -u origin main
 If you reference this repository or the accompanying paper, please cite:
 
 > S. Muzzammil, "Cloud-Native Microservices Architecture for Scalable Web Applications: Design, Implementation, and Empirical Performance Evaluation," 2026.
+
+## Author
+
+Sakina muzzammil
 
 ## License
 
