@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software or reference the accompanying paper, please cite it as below."
+type: software
+title: "Cloud-Native Microservices Architecture for Scalable Web Applications"
+version: 1.0.0
+date-released: 2026-07-12
+authors:
+  - family-names: "Muzzammil"
+    given-names: "Sakina"
+    email: "sakinamuzzammil@gmail.com"
+repository-code: "https://github.com/SakinaMuzzammil/cloud_native_microservices_architecture"
+license: MIT
+abstract: >
+  Reference implementation and empirical performance evaluation comparing a
+  monolithic and a microservices architecture for the same application,
+  including a working Node.js/Express codebase, Docker/Kubernetes/Terraform
+  deployment configuration targeting AWS EKS, autocannon-based load-test
+  benchmarks, and an IEEE-format paper reporting the results.
+keywords:
+  - microservices
+  - cloud-native
+  - kubernetes
+  - docker
+  - aws
+  - performance-evaluation
+  - software-architecture
+preferred-citation:
+  type: article
+  title: "Cloud-Native Microservices Architecture for Scalable Web Applications: Design, Implementation, and Empirical Performance Evaluation"
+  authors:
+    - family-names: "Muzzammil"
+      given-names: "Sakina"
+  year: 2026
