@@ -1,0 +1,22 @@
+{
+  "monolith": {
+    "sampleCount": 23,
+    "avgCpuPercent": 72,
+    "peakCpuPercent": 84,
+    "avgMemMb": 100.5,
+    "peakMemMb": 110.7
+  },
+  "microservices": {
+    "sampleCount": 24,
+    "avgCpuPercent": 88.1,
+    "peakCpuPercent": 100,
+    "avgMemMb": 314.7,
+    "peakMemMb": 350.9
+  },
+  "testbed": {
+    "vCPUs": 1,
+    "node": "v22.22.2",
+    "os": "Ubuntu 24.04.4 LTS",
+    "sampledEveryMs": 250
+  }
+}

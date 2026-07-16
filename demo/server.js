@@ -44,6 +44,7 @@ require('../services/order/index.js').listen(ORDER_PORT, () => console.log(`[dem
 delete require.cache[require.resolve('../services/gateway/index.js')];
 process.env.PORT = String(GATEWAY_PORT);
 process.env.AUTH_URL = `http://127.0.0.1:${AUTH_PORT}`;
+process.env.ROUTING_STRATEGY = process.env.ROUTING_STRATEGY || 'adaptive';
 process.env.ORDER_URL = `http://127.0.0.1:${ORDER_PORT}`;
 process.env.PRODUCT_URLS = `http://127.0.0.1:${PRODUCT_PORT}`;
 require('../services/gateway/index.js').listen(GATEWAY_PORT, () => console.log(`[demo] gateway internal:${GATEWAY_PORT}`));
@@ -53,7 +54,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 
-app.use(['/api', '/health'], async (req, res) => {
+app.use(['/api', '/health', '/gateway'], async (req, res) => {
   try {
     const target = `http://127.0.0.1:${GATEWAY_PORT}${req.originalUrl}`;
     const resp = await fetch(target, {

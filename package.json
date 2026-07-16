@@ -12,10 +12,12 @@
   "dependencies": {
     "body-parser": "^2.3.0",
     "cors": "^2.8.6",
+    "docx": "^9.7.1",
     "express": "^5.2.1",
     "http-proxy-middleware": "^4.2.0",
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.11.0",
+    "pidusage": "^4.0.1",
     "uuid": "^14.0.1"
   },
   "devDependencies": {

@@ -1,0 +1,345 @@
+[
+  {
+    "strategy": "round-robin",
+    "second": 0,
+    "total": 7,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 0,
+    "total": 7,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 1,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 1,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 2,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 2,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 3,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 3,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 4,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 4,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 5,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 5,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 6,
+    "total": 10,
+    "errors": 4,
+    "errorRate": 0.4
+  },
+  {
+    "strategy": "adaptive",
+    "second": 6,
+    "total": 10,
+    "errors": 3,
+    "errorRate": 0.3
+  },
+  {
+    "strategy": "round-robin",
+    "second": 7,
+    "total": 10,
+    "errors": 5,
+    "errorRate": 0.5
+  },
+  {
+    "strategy": "adaptive",
+    "second": 7,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 8,
+    "total": 10,
+    "errors": 5,
+    "errorRate": 0.5
+  },
+  {
+    "strategy": "adaptive",
+    "second": 8,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 9,
+    "total": 10,
+    "errors": 5,
+    "errorRate": 0.5
+  },
+  {
+    "strategy": "adaptive",
+    "second": 9,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 10,
+    "total": 10,
+    "errors": 5,
+    "errorRate": 0.5
+  },
+  {
+    "strategy": "adaptive",
+    "second": 10,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 11,
+    "total": 10,
+    "errors": 5,
+    "errorRate": 0.5
+  },
+  {
+    "strategy": "adaptive",
+    "second": 11,
+    "total": 10,
+    "errors": 1,
+    "errorRate": 0.1
+  },
+  {
+    "strategy": "round-robin",
+    "second": 12,
+    "total": 10,
+    "errors": 5,
+    "errorRate": 0.5
+  },
+  {
+    "strategy": "adaptive",
+    "second": 12,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 13,
+    "total": 10,
+    "errors": 5,
+    "errorRate": 0.5
+  },
+  {
+    "strategy": "adaptive",
+    "second": 13,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 14,
+    "total": 10,
+    "errors": 2,
+    "errorRate": 0.2
+  },
+  {
+    "strategy": "adaptive",
+    "second": 14,
+    "total": 9,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 15,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 15,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 16,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 16,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 17,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 17,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 18,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 18,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 19,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 19,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 20,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 20,
+    "total": 9,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 21,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 21,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 22,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 22,
+    "total": 9,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 23,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "round-robin",
+    "second": 23,
+    "total": 10,
+    "errors": 0,
+    "errorRate": 0
+  },
+  {
+    "strategy": "adaptive",
+    "second": 24,
+    "total": 2,
+    "errors": 0,
+    "errorRate": 0
+  }
+]
