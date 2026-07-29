@@ -3,7 +3,6 @@
 Reference implementation and empirical performance evaluation accompanying the research paper of the same name (formatted for submission to Future Generation Computer Systems).
 
 **Live demo:** _https://cloud-native-microservices-demo-0ur2.onrender.com_ (free tier — first request after inactivity may take 30-60s to wake up)
-**Paper (PDF):** [`IEEE_Paper_Cloud_Native_Microservices.pdf`](./IEEE_Paper_Cloud_Native_Microservices.pdf)
 **Graphical abstract:** [`charts/graphical_abstract.png`](./charts/graphical_abstract.png)
 
 ![Architecture diagram](./charts/fig0_architecture.png)
